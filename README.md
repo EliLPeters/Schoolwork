@@ -1,3 +1,2 @@
 # CS 211 Data Structures
-Files for my Data Structures class: homework, labs etc.
-Making sure things work properly
+Branch for Data Structures, Spring 2018
