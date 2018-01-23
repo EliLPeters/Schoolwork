@@ -1,2 +1,2 @@
-# Schoolwork
-Branch for each class, will make things easier probably
+# CS 232 Python
+Branch for Python Programming, Spring 2018
