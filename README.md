@@ -1,2 +1,2 @@
-# Schoolwork
-Branch for each class, will make things easier probably
+# CS 211 Data Structures
+Files for my Data Structures class: homework, labs etc.
