@@ -1,2 +1,3 @@
 ﻿  main.cpp
-  PA1.vcxproj -> C:\Users\Eli\Documents\Github\CS 211 Data Structures\Homework\PA1\x64\Debug\PA1.exe
+c:\users\elp5\desktop\bin\schoolwork\homework\pa1\pa1\addrandomnoise.h(15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  PA1.vcxproj -> C:\Users\elp5\Desktop\bin\Schoolwork\Homework\PA1\x64\Debug\PA1.exe

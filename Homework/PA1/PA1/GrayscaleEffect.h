@@ -8,9 +8,9 @@ class GrayscaleEffect : public ImageEffect
 {
 	virtual void processImage(PpmDocument &doc)
 	{
-		for (int i; i < doc.getHeight(); i++)
+		for (int i = 0; i < doc.getHeight(); i++)
 		{
-			for (int j; j < doc.getWidth(); j++)
+			for (int j = 0; j < doc.getWidth(); j++)
 			{
 				Pixel& p = doc.getPixel(i, j);
 

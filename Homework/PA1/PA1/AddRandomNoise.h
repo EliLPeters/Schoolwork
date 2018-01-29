@@ -3,13 +3,16 @@
 #define ADD_RANDOM_NOISE_H
 
 #include <cstdlib>
+#include <ctime>
 #include "ImageEffect.h"
 
 // This image effect will add random noise to an image
+
 class AddRandomNoise : public ImageEffect
 {
 	virtual void processImage(PpmDocument &doc)
 	{
+		srand(time(NULL));
 		for (int i = 0; i < doc.getHeight(); i++)
 		{
 			for (int j = 0; j < doc.getWidth(); j++)
