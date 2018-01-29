@@ -14,11 +14,13 @@
 #include "NegateGreenImageEffect.h"
 #include "NegateBlueImageEffect.h"
 #include "AddRandomNoise.h"
+#include "HighContrast.h"
+#include "GrayscaleEffect.h"
 
 using namespace std;
 
 enum colors_t { RED = 0, GREEN, BLUE };
-enum menu_options_t {REMOVE_RED = 1, REMOVE_GREEN, REMOVE_BLUE, NEGATE_RED, NEGATE_GREEN, NEGATE_BLUE, ADD_NOISE}; //PA1 TODO: fill in the rest
+enum menu_options_t {REMOVE_RED = 1, REMOVE_GREEN, REMOVE_BLUE, NEGATE_RED, NEGATE_GREEN, NEGATE_BLUE, ADD_NOISE, HIGH_CONTRAST, GRAYSCALE}; //PA1 TODO: fill in the rest
 PpmDocument ppmDocumentFromFile(string file_name);
 void ppmDocumentToFile(PpmDocument &doc, string file_name);
 menu_options_t getMenuSelection();
@@ -142,7 +144,7 @@ void ppmDocumentToFile(PpmDocument &doc, string file_name)
 menu_options_t getMenuSelection()
 {
     //PA1 TODO: fill in the rest
-    vector<string> menu_options{ "", "Remove red", "Remove green", "Remove blue", "Negate red", "Negate green", "Negate blue", "Add Noise"};
+    vector<string> menu_options{ "", "Remove red", "Remove green", "Remove blue", "Negate red", "Negate green", "Negate blue", "Add Noise", "High Contrast", "Grayscale"};
     cout << "***Effect Menu***" << endl;
     for (int i = 1; i < menu_options.size(); i++)
     {
@@ -184,6 +186,12 @@ void applyImageEffect(PpmDocument &doc, menu_options_t option)
 		break;
 	case ADD_NOISE:
 		effect = new AddRandomNoise();
+		break;
+	case HIGH_CONTRAST:
+		effect = new HighContrast();
+		break;
+	case GRAYSCALE:
+		effect = new GrayscaleEffect();
 		break;
     }
 

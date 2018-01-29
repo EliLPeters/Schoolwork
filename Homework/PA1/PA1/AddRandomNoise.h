@@ -18,11 +18,12 @@ class AddRandomNoise : public ImageEffect
 				
 				Pixel& p = doc.getPixel(i, j);
 
-				if ((p.getRed() + noise) > 255)
+				//red
+				if ((p.getRed() + noise) >= 255)
 				{
 					p.setRed(255);
 				}
-				else if ((p.getRed() + noise) < 0)
+				else if ((p.getRed() + noise) <= 0)
 				{
 					p.setRed(0);
 				}
@@ -31,11 +32,12 @@ class AddRandomNoise : public ImageEffect
 					p.setRed(p.getRed() + noise);
 				}
 
-				if ((p.getBlue() + noise) > 255)
+				//blue
+				if ((p.getBlue() + noise) >= 255)
 				{
 					p.setBlue(255);
 				}
-				else if ((p.getBlue() + noise) < 0)
+				else if ((p.getBlue() + noise) <= 0)
 				{
 					p.setBlue(0);
 				}
@@ -44,11 +46,12 @@ class AddRandomNoise : public ImageEffect
 					p.setBlue(p.getBlue() + noise);
 				}
 
-				if ((p.getGreen() + noise) > 255)
+				//green
+				if ((p.getGreen() + noise) >= 255)
 				{
 					p.setGreen(255);
 				}
-				else if ((p.getGreen() + noise) < 0)
+				else if ((p.getGreen() + noise) <= 0)
 				{
 					p.setGreen(0);
 				}

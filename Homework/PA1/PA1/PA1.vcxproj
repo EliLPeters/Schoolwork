@@ -144,6 +144,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AddRandomNoise.h" />
+    <ClInclude Include="GrayscaleEffect.h" />
+    <ClInclude Include="HighContrast.h" />
     <ClInclude Include="ImageEffect.h" />
     <ClInclude Include="NegateBlueImageEffect.h" />
     <ClInclude Include="NegateGreenImageEffect.h" />

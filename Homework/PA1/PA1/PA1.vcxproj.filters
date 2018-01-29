@@ -50,6 +50,12 @@
     <ClInclude Include="AddRandomNoise.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="HighContrast.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GrayscaleEffect.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="blocks.ppm">
