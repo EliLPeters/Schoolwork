@@ -1,3 +1,7 @@
+// PA 1
+// Eli Peters
+// CS-211 Spring 2018
+
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -16,11 +20,17 @@
 #include "AddRandomNoise.h"
 #include "HighContrast.h"
 #include "GrayscaleEffect.h"
+#include "FlipHorizontalImageEffect.h"
+#include "FlipVerticalImageEffect.h"
+#include "RotateEffect.h"
+#include "BlurEffect.h"
+#include "PixelateEffect.h"
 
 using namespace std;
 
 enum colors_t { RED = 0, GREEN, BLUE };
-enum menu_options_t {REMOVE_RED = 1, REMOVE_GREEN, REMOVE_BLUE, NEGATE_RED, NEGATE_GREEN, NEGATE_BLUE, ADD_NOISE, HIGH_CONTRAST, GRAYSCALE}; //PA1 TODO: fill in the rest
+enum menu_options_t {REMOVE_RED = 1, REMOVE_GREEN, REMOVE_BLUE, NEGATE_RED, NEGATE_GREEN, NEGATE_BLUE, ADD_NOISE, HIGH_CONTRAST, GRAYSCALE,
+	HORIZONTAL, VERTICAL, ROTATE, BLUR, PIXELATE}; //PA1 TODO: fill in the rest
 PpmDocument ppmDocumentFromFile(string file_name);
 void ppmDocumentToFile(PpmDocument &doc, string file_name);
 menu_options_t getMenuSelection();
@@ -144,7 +154,8 @@ void ppmDocumentToFile(PpmDocument &doc, string file_name)
 menu_options_t getMenuSelection()
 {
     //PA1 TODO: fill in the rest
-    vector<string> menu_options{ "", "Remove red", "Remove green", "Remove blue", "Negate red", "Negate green", "Negate blue", "Add Noise", "High Contrast", "Grayscale"};
+    vector<string> menu_options{ "", "Remove red", "Remove green", "Remove blue", "Negate red", "Negate green", "Negate blue", "Add Noise",
+		"High Contrast", "Grayscale", "Flip Horizontally", "Flip Vertically", "Rotate Clockwise", "Blur", "Pixelate"};
     cout << "***Effect Menu***" << endl;
     for (int i = 1; i < menu_options.size(); i++)
     {
@@ -192,6 +203,21 @@ void applyImageEffect(PpmDocument &doc, menu_options_t option)
 		break;
 	case GRAYSCALE:
 		effect = new GrayscaleEffect();
+		break;
+	case HORIZONTAL:
+		effect = new FlipHorizontalImageEffect();
+		break;
+	case VERTICAL:
+		effect = new FlipVerticalImageEffect();
+		break;
+	case ROTATE:
+		effect = new RotateEffect();
+		break;
+	case BLUR:
+		effect = new BlurEffect();
+		break;
+	case PIXELATE:
+		effect = new PixelateEffect();
 		break;
     }
 

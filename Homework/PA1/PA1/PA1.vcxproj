@@ -144,6 +144,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AddRandomNoise.h" />
+    <ClInclude Include="BlurEffect.h" />
+    <ClInclude Include="FlipHorizontalImageEffect.h" />
+    <ClInclude Include="FlipVerticalImageEffect.h" />
     <ClInclude Include="GrayscaleEffect.h" />
     <ClInclude Include="HighContrast.h" />
     <ClInclude Include="ImageEffect.h" />
@@ -151,10 +154,12 @@
     <ClInclude Include="NegateGreenImageEffect.h" />
     <ClInclude Include="NegateRedImageEffect.h" />
     <ClInclude Include="Pixel.h" />
+    <ClInclude Include="PixelateEffect.h" />
     <ClInclude Include="PpmDocument.h" />
     <ClInclude Include="RemoveBlueImageEffect.h" />
     <ClInclude Include="RemoveGreenImageEffect.h" />
     <ClInclude Include="RemoveRedImageEffect.h" />
+    <ClInclude Include="RotateEffect.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="blocks.ppm" />
