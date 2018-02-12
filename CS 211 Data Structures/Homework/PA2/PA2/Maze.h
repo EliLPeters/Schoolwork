@@ -91,9 +91,19 @@ class Maze
 
 		while (!process_stack.empty())
 		{
-			switch (getSymbol(process_stack.top()[0], process_stack.top()[1]))
+			//above
+			switch (getSymbol(process_stack.top()[0], (process_stack.top()[1] - 1)))
 			{
-
+			case '#':
+				break;
+			case '.':
+				break;
+			case 'x':
+				break;
+			case 'o':
+				break;
+			case '*':
+				break;
 			}
 		}
 	}
