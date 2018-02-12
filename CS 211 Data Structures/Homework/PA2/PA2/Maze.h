@@ -67,7 +67,6 @@ class Maze
 			}
 			cout << endl;
 		}
-		cout << "The starting coördinate is at (" << _start_x << ", " << _start_y << ")" << endl;
 	}
 
 	void search_maze_stack()
