@@ -13,6 +13,9 @@ class Maze
 	int _maze_width = 0;
 	int _maze_height = 0;
 
+	int _start_x = 0;
+	int _start_y = 0;
+
 	vector<vector<char>> _maze_vector;
 
 	public:
@@ -41,6 +44,11 @@ class Maze
 
 				for (int j = 0; j < _maze_width; j++)
 				{
+					if (current_line.at(j) == 'o')
+					{
+						_start_x = j;
+						_start_y = i;
+					}
 					_maze_vector[i][j] = current_line.at(j);
 				}
 			}
@@ -59,16 +67,17 @@ class Maze
 			}
 			cout << endl;
 		}
+		cout << "The starting coördinate is at (" << _start_x << ", " << _start_y << ")" << endl;
 	}
 
 	void search_maze_stack()
 	{
-		// TODO: implement searchign via stack
+		// TODO: implement searching via stack
 	}
 
 	void search_maze_queue()
 	{
-		// TODO: implement searchign via queue
+		// TODO: implement searching via queue
 	}
 };
 

@@ -4,8 +4,6 @@
 
 #include <iostream>
 #include <string>
-#include <fstream>
-#include <vector>
 
 #include "Maze.h"
 
@@ -14,7 +12,18 @@ using namespace std;
 int main(void)
 {
 	Maze the_maze = Maze();
-	the_maze.read_maze("maze2.txt");
+
+	cout << "Which maze file would you like analyzed?" << endl;
+	string maze_file = "";
+	cin >> maze_file;
+
+	the_maze.read_maze(maze_file);
+
+	cout << endl << "The maze in " << maze_file << ":" << endl;
 	the_maze.print_maze();
+
+	cout << endl << endl;
+	cout << "Which search method would you like to run?" << endl;
+	cout << "JK, this feature hasn't actually been implemented yet!" << endl;
 	return 0;
 }
