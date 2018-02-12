@@ -17,10 +17,11 @@ int main(void)
 	string maze_file = "";
 	cin >> maze_file;
 
-	the_maze.read_maze(maze_file);
+	the_maze.readMaze(maze_file);
 
 	cout << endl << "The maze in " << maze_file << ":" << endl;
-	the_maze.print_maze();
+	the_maze.printMaze();
+	the_maze.searchMazeStack();
 
 	cout << endl << endl;
 	cout << "Which search method would you like to run?" << endl;
