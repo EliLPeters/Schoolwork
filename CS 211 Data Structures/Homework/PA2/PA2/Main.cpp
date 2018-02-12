@@ -7,9 +7,14 @@
 #include <fstream>
 #include <vector>
 
+#include "Maze.h"
+
 using namespace std;
 
 int main(void)
 {
+	Maze the_maze = Maze();
+	the_maze.read_maze("maze2.txt");
+	the_maze.print_maze();
 	return 0;
 }
