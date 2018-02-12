@@ -60,6 +60,16 @@ class Maze
 			cout << endl;
 		}
 	}
+
+	void search_maze_stack()
+	{
+		// TODO: implement searchign via stack
+	}
+
+	void search_maze_queue()
+	{
+		// TODO: implement searchign via queue
+	}
 };
 
 #endif // !MAZE_H
