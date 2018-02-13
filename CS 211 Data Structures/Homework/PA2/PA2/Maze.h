@@ -18,6 +18,9 @@ class Maze
 	int _start_x = 0;
 	int _start_y = 0;
 
+	int _end_x = -1;
+	int _end_y = -1;
+
 	string _file_name = "";
 
 	vector<vector<char>> _maze_vector;
@@ -80,48 +83,196 @@ class Maze
 	{
 		return _maze_vector[x][y];
 	}
+	void setSymbol(int x, int y, char replacement)
+	{
+		_maze_vector[x][y] = replacement;
+	}
 
 	void searchMazeStack()
 	{
+		bool found_end = false;
+
 		int cur_x = _start_x;
 		int cur_y = _start_y;
 
-		stack<int[2]> process_stack;
-		process_stack.push({cur_x, cur_y});
+		stack<int> x_stack;
+		stack<int> y_stack;
+		x_stack.push(_start_x);
+		y_stack.push(_start_y);
 
-		while (!process_stack.empty())
+		while (x_stack.empty() == false && y_stack.empty() == false && found_end == false)
 		{
+			cur_x = x_stack.top();
+			cur_y = y_stack.top();
+			setSymbol(x_stack.top(), y_stack.top(), 'x');
+
+			x_stack.pop();
+			y_stack.pop();
+
+			char above = getSymbol(cur_x, (cur_y - 1));
+			char below = getSymbol(cur_x, (cur_y + 1));
+			char left = getSymbol((cur_x - 1), cur_y);
+			char right = getSymbol((cur_x + 1), cur_y);
+
 			//above
-			switch (getSymbol(process_stack.top()[0], (process_stack.top()[1] - 1)))
+			switch (above)
 			{
 			case '#':
 				break;
 			case '.':
+				x_stack.push(cur_x);
+				y_stack.push(cur_y - 1);
 				break;
 			case 'x':
 				break;
-			case 'o':
-				break;
 			case '*':
+				found_end = true;
 				break;
 			}
+
+			//below
+			switch (below)
+			{
+			case '#':
+				break;
+			case '.':
+				x_stack.push(cur_x);
+				y_stack.push(cur_y + 1);
+				break;
+			case 'x':
+				break;
+			case '*':
+				found_end = true;
+				break;
+			}
+
+			//left
+			switch (left)
+			{
+			case '#':
+				break;
+			case '.':
+				x_stack.push(cur_x - 1);
+				y_stack.push(cur_y);
+				break;
+			case 'x':
+				break;
+			case '*':
+				found_end = true;
+				break;
+			}
+
+			//right
+			switch (right)
+			{
+			case '#': 
+				break;
+			case '.':
+				x_stack.push(cur_x + 1);
+				y_stack.push(cur_y);
+				break;
+			case 'x':
+				break;
+			case '*':
+				found_end = true;
+				break;
+			}
+
 		}
 	}
 
 	void searchMazeQueue()
 	{
+		bool found_end = false;
+
 		int cur_x = _start_x;
 		int cur_y = _start_y;
+
+		queue<int> x_queue;
+		queue<int> y_queue;
+		x_queue.push(_start_x);
+		y_queue.push(_start_y);
+
+		while (x_queue.empty() == false && y_queue.empty() == false && found_end == false)
+		{
+			cur_x = x_queue.front();
+			cur_y = y_queue.front();
+			setSymbol(x_queue.front(), y_queue.front(), 'x');
+
+			x_queue.pop();
+			y_queue.pop();
+
+			char above = getSymbol(cur_x, (cur_y - 1));
+			char below = getSymbol(cur_x, (cur_y + 1));
+			char left = getSymbol((cur_x - 1), cur_y);
+			char right = getSymbol((cur_x + 1), cur_y);
+
+			//above
+			switch (above)
+			{
+			case '#':
+				break;
+			case '.':
+				x_queue.push(cur_x);
+				y_queue.push(cur_y - 1);
+				break;
+			case 'x':
+				break;
+			case '*':
+				found_end = true;
+				break;
+			}
+
+			//below
+			switch (below)
+			{
+			case '#':
+				break;
+			case '.':
+				x_queue.push(cur_x);
+				y_queue.push(cur_y + 1);
+				break;
+			case 'x':
+				break;
+			case '*':
+				found_end = true;
+				break;
+			}
+
+			//left
+			switch (left)
+			{
+			case '#':
+				break;
+			case '.':
+				x_queue.push(cur_x - 1);
+				y_queue.push(cur_y);
+				break;
+			case 'x':
+				break;
+			case '*':
+				found_end = true;
+				break;
+			}
+
+			//right
+			switch (right)
+			{
+			case '#':
+				break;
+			case '.':
+				x_queue.push(cur_x + 1);
+				y_queue.push(cur_y);
+				break;
+			case 'x':
+				break;
+			case '*':
+				found_end = true;
+				break;
+			}
+
+		}
 	}
 };
-
-/*
-switch statement during search
-#: it's a wall, ignore
-.: it's floor, add it to be examined
-x: already explored, ignore
-o: starting position, ignore
-*: the target.  End the search.
-*/
 
 #endif // !MAZE_H

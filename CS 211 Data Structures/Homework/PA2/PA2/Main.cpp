@@ -25,6 +25,7 @@ int main(void)
 
 	cout << endl << endl;
 	cout << "Which search method would you like to run?" << endl;
-	cout << "JK, this feature hasn't actually been implemented yet!" << endl;
+	the_maze.searchMazeStack();
+	the_maze.printMaze();
 	return 0;
 }
