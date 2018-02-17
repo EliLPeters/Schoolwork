@@ -2,6 +2,10 @@
 #ifndef MAZE_H
 #define MAZE_H
 
+// PA 2
+// CS 211 Data Structures Spring 2018
+// Eli Peters
+
 #include <vector>
 #include <string>
 #include <fstream>
@@ -25,7 +29,59 @@ class Maze
 
 	vector<vector<char>> _maze_vector;
 
-	public:
+protected:
+
+	// Makes it easier to copy the maze, so that the searching doesn't
+	//		mess with the original, letting us run both searches
+	//		in the same execution
+	vector<vector<char>> copyMaze(vector<vector<char>> input_maze)
+	{
+		vector<vector<char>> copy;
+		copy.resize(_maze_height);
+		for (int i = 0; i < _maze_height; i++)
+		{
+			copy[i].resize(_maze_width);
+
+			for (int j = 0; j < _maze_width; j++)
+			{
+				copy[i][j] = getSymbol(i, j, input_maze);
+			}
+		}
+
+		return copy;
+	}
+
+	// Makes handling x and y coordinates more intuitive.
+	char getSymbol(int x, int y, vector<vector<char>> the_vector)
+	{
+		return the_vector[x][y];
+	}
+	void setSymbol(int x, int y, vector<vector<char>>& the_vector, char replacement)
+	{
+		the_vector[x][y] = replacement;
+	}
+
+	void createMazeFile(vector<vector<char>> the_vector, string file_name)
+	{
+		ofstream output_stream;
+		output_stream.open(file_name);
+
+		for (int i = 0; i < _maze_height; i++)
+		{
+			string cur_line = "";
+			for (int j = 0; j < _maze_width; j++)
+			{
+				cur_line += the_vector[i][j];
+			}
+			cur_line += "\n";
+			output_stream << cur_line;
+		}
+
+		output_stream.close();
+	}
+
+public:
+
 	void readMaze(string the_file)
 	{
 		_file_name = the_file;
@@ -78,22 +134,14 @@ class Maze
 		}
 	}
 
-	// Makes handling x and y coordinates more intuitive.
-	char getSymbol(int x, int y)
-	{
-		return _maze_vector[x][y];
-	}
-	void setSymbol(int x, int y, char replacement)
-	{
-		_maze_vector[x][y] = replacement;
-	}
-
-	void searchMazeStack()
+	void searchMazeDepth()
 	{
 		bool found_end = false;
 
 		int cur_x = _start_x;
 		int cur_y = _start_y;
+
+		vector<vector<char>> search_copy = copyMaze(_maze_vector);
 
 		stack<int> x_stack;
 		stack<int> y_stack;
@@ -104,15 +152,15 @@ class Maze
 		{
 			cur_x = x_stack.top();
 			cur_y = y_stack.top();
-			setSymbol(x_stack.top(), y_stack.top(), 'x');
+			setSymbol(x_stack.top(), y_stack.top(), search_copy, 'x');
 
 			x_stack.pop();
 			y_stack.pop();
 
-			char above = getSymbol(cur_x, (cur_y - 1));
-			char below = getSymbol(cur_x, (cur_y + 1));
-			char left = getSymbol((cur_x - 1), cur_y);
-			char right = getSymbol((cur_x + 1), cur_y);
+			char above = getSymbol(cur_x, (cur_y - 1), search_copy);
+			char below = getSymbol(cur_x, (cur_y + 1), search_copy);
+			char left = getSymbol((cur_x - 1), cur_y, search_copy);
+			char right = getSymbol((cur_x + 1), cur_y, search_copy);
 
 			//above
 			switch (above)
@@ -179,14 +227,25 @@ class Maze
 			}
 
 		}
+
+		if (found_end == true)
+		{
+			createMazeFile(search_copy, "solution_dfs.txt");
+		}
+		else
+		{
+			cout << endl << "No solution was found." << endl << endl;
+		}
 	}
 
-	void searchMazeQueue()
+	void searchMazeBreadth()
 	{
 		bool found_end = false;
 
 		int cur_x = _start_x;
 		int cur_y = _start_y;
+
+		vector<vector<char>> search_copy = copyMaze(_maze_vector);
 
 		queue<int> x_queue;
 		queue<int> y_queue;
@@ -197,15 +256,15 @@ class Maze
 		{
 			cur_x = x_queue.front();
 			cur_y = y_queue.front();
-			setSymbol(x_queue.front(), y_queue.front(), 'x');
+			setSymbol(x_queue.front(), y_queue.front(), search_copy, 'x');
 
 			x_queue.pop();
 			y_queue.pop();
 
-			char above = getSymbol(cur_x, (cur_y - 1));
-			char below = getSymbol(cur_x, (cur_y + 1));
-			char left = getSymbol((cur_x - 1), cur_y);
-			char right = getSymbol((cur_x + 1), cur_y);
+			char above = getSymbol(cur_x, (cur_y - 1), search_copy);
+			char below = getSymbol(cur_x, (cur_y + 1), search_copy);
+			char left = getSymbol((cur_x - 1), cur_y, search_copy);
+			char right = getSymbol((cur_x + 1), cur_y, search_copy);
 
 			//above
 			switch (above)
@@ -271,6 +330,15 @@ class Maze
 				break;
 			}
 
+		}
+
+		if (found_end == true)
+		{
+			createMazeFile(search_copy, "solution_bfs.txt");
+		}
+		else
+		{
+			cout << endl << "No solution was found." << endl << endl;
 		}
 	}
 };

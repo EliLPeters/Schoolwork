@@ -21,11 +21,30 @@ int main(void)
 
 	cout << endl << "The maze in " << maze_file << ":" << endl;
 	the_maze.printMaze();
-	the_maze.searchMazeStack();
 
 	cout << endl << endl;
-	cout << "Which search method would you like to run?" << endl;
-	the_maze.searchMazeStack();
-	the_maze.printMaze();
+
+	bool terminate = false;
+	while (terminate == false)
+	{
+		cout << "Which search method would you like to run?" << endl;
+		cout << "1: Depth-First Search" << endl << "2: Breadth-First Search" << endl;
+		cout << "-1: End program." << endl;
+		int choice = ' ';
+		cin >> choice;
+
+		switch (choice)
+		{
+			case 1:
+				the_maze.searchMazeDepth();
+				break;
+			case 2:
+				the_maze.searchMazeBreadth();
+				break;
+			case -1:
+				terminate = true;
+				break;
+		}
+	}
 	return 0;
 }
