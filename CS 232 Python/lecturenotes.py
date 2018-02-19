@@ -11,15 +11,23 @@
 def add3(a_number):
     return (a_number + 3)
 
-x = 0
-while True:
-    x+=1
-    if x > 10:
-        break
+#x = 0
+#while True:
+#    x+=1
+#    if x > 10:
+#        break
 
-y = 0
-while y < 20:
-    y += 1
-    if (y % 10 == 0):
-        continue
-    print(y)
+#y = 0
+#while y < 20:
+#    y += 1
+#    if (y % 10 == 0):
+#        continue
+#    print(y)
+
+def generator_creator():
+    import random
+    while True:
+        a_num = random.randint(0, 9)
+        yield a_num
+
+
