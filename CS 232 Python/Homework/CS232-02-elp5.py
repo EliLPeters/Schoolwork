@@ -50,3 +50,43 @@ def letter_freq(the_string):
 
 
 # Problem 4
+
+# letter_freq_chart: dict -> void
+# expects: a dictionary with letters as the keys and numbers as the values
+# returns: nothing
+# side effects: prints a graph of the number associated with each letter
+def letter_freq_chart(the_dict):
+    print("LETTER FREQUENCY CHART:")
+    for i in the_dict:
+        print(i, end=": ")
+        for j in range(0, the_dict[i]):
+            print("X", end="")
+        print()
+
+
+# Problem 5
+
+# HELPER FUNCTION:
+# coord_max: dict, int -> int
+# expects: a dictionary with letters as the keys and a tuple containing a pair of coordinates as the value
+#           and an int containing either 0 or 1
+# returns: the largest x or y coodinate, as determined by 0 or 1 respectively
+def coord_max(the_dict, xory):
+    maximum = 0
+    for i in the_dict:
+        if maximum < the_dict[i][xory]:
+            maximum = the_dict[i][xory]
+    return maximum
+
+# plot_points: dict -> void
+# expects: a dictionary with letters as the keys and a tuple containing a pair of coordinates as the value
+# returns: nothing
+# side effects: prints a plot of those letters at the corresponding coordinates.
+def plot_points(the_dict):
+    max_x = coord_max(the_dict, 0)
+    max_y = coord_max(the_dict, 1)
+    grid = []
+    
+    for i in range(0, (
+    
+    for i in range(1, (max_y + 1)):
