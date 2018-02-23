@@ -66,7 +66,9 @@ def letter_freq_chart(the_dict):
 
 # Problem 5
 
-# HELPER FUNCTION:
+test_points = { 'a':(4,3), 'b':(1,2), 'c':(5,1) }
+
+# HELPER FUNCTIONS:
 # coord_max: dict, int -> int
 # expects: a dictionary with letters as the keys and a tuple containing a pair of coordinates as the value
 #           and an int containing either 0 or 1
@@ -78,6 +80,19 @@ def coord_max(the_dict, xory):
             maximum = the_dict[i][xory]
     return maximum
 
+# print_grid: list int int -> void
+# Expcects: a list of lists and the width thereof, returns nothing
+# Side effects: prints the contents of each internal list onto a new line\
+def print_grid(the_grid, the_width):
+    for i in range(0, len(the_grid)):
+        print((len(the_grid) - i)-1, end="")
+        for j in range(0, len(the_grid[i])):
+            print(the_grid[i][j], end="")
+        print()
+    print(" ", end = "")
+    for i in range(0, the_width+1):
+            print(i, end="")
+
 # plot_points: dict -> void
 # expects: a dictionary with letters as the keys and a tuple containing a pair of coordinates as the value
 # returns: nothing
@@ -86,7 +101,12 @@ def plot_points(the_dict):
     max_x = coord_max(the_dict, 0)
     max_y = coord_max(the_dict, 1)
     grid = []
-    
-    for i in range(0, (
-    
-    for i in range(1, (max_y + 1)):
+    for i in range(0, (max_y + 1)):
+        grid.append([])
+        for j in range(0, (max_x + 1)):
+            grid[i].append('.')
+    for i in the_dict:
+        x = (the_dict[i][0])
+        y = (max_y - the_dict[i][1])
+        grid[y][x] = i
+    print_grid(grid, max_x)
