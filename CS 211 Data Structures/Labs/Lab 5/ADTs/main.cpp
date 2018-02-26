@@ -30,16 +30,16 @@ BinaryNode<int>* subHelper(BinaryNode<int>* node1, BinaryNode<int>* node2)
 	}
 	else if ((node1->getValue() < node2->getValue()) && (node1->getLeftChild() != nullptr))
 	{
-		subHelper(node1->getLeftChild(), node2);
+		return subHelper(node1->getLeftChild(), node2);
 	}
-	else if ((node1->getValue() >= node2->getValue()) && (node1->getRightChild() != nullptr))
+	else if ((node1->getValue() > node2->getValue()) && (node1->getRightChild() != nullptr))
 	{
-		subHelper(node1->getRightChild(), node2);
+		return subHelper(node1->getRightChild(), node2);
 	}
-	else
-	{
-		return nullptr;
-	}
+	//else
+	//{
+		//return nullptr;
+	//}
 }
 
 void mergeTrees()
@@ -80,15 +80,16 @@ void subtreeTest(BinaryNode<int>* tree1, BinaryNode<int>* tree2)
 {
 	BinaryNode<int>* sub_start = subHelper(tree1, tree2);
 
+	// THIS SHOULD NOT WORK WHY DOES IT WORK?
 	if (sub_start == nullptr)
 	{
 		cout << "FALSE"  << endl;
-		return;
+		//return;
 	}
-
-    //LAB TASK: determine if tree2 is a subtree of tree1
-    //Note: writing a recursive helper function may be useful
-	
+	else
+	{
+		cout << "TRUE" << endl;
+	}
 }
 
 void commonAncestor(BinaryNode<int>* tree, int val1, int val2)
