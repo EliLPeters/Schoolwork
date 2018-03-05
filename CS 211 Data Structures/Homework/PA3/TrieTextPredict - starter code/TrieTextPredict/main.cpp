@@ -1,6 +1,10 @@
 #include <string>
 #include <iostream>
+#include <fstream>
+
 #include "Trie.h"
+
+
 using namespace std;
 
 //PA #3 Checkin TODO: Implement!
@@ -61,14 +65,43 @@ int main(void)
     Trie dictionary{};
 
     string line = "";
+	string dict_file = "";
 
     //PA #3 Checkin hook.  Remove before turning in your final PA3
-    pa3CheckinDriver();
+    //pa3CheckinDriver();
 
     //First, prompt the user for a file containing all of the words to look up
+	cout << "Please enter the name of the file you wish to add words from: " << endl;
+	cin >> dict_file;
 
     //Next, add all words in the file into the Trie using the addWord() function
+	ifstream recieving;
+	recieving.open(dict_file);
+	while (recieving.is_open() && recieving.good())
+	{
+		getline(recieving, line);
+		dictionary.addWord(line);
+	}
+	recieving.close();
 
-    //Then, prompt the user for a list of partial words to look up.  Display all matches 
-    //on the screen.
+    //Then, prompt the user for a list of partial words to look up.  Display all matches on the screen.
+	string sub = "";
+	cout << "Enter the substring you wish to look up, or leave blank to exit: " << endl;
+	cin >> sub;
+	if (sub != "")
+	{
+		vector<string> matches = dictionary.search(sub);
+
+		if (matches.size() == 0)
+		{
+			cout << "No matches found" << endl;
+		}
+
+		for (auto match : matches)
+		{
+			cout << match << " ";
+		}
+	}
+
+	return 0;
 }
