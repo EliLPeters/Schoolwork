@@ -56,12 +56,19 @@ private:
 		}
 	}
 
-	void matchHelper(vector<string>& matches, string& match, TrieNode* node)
+	void matchHelper(vector<string>& matches, string match, TrieNode* node)
 	{
 		if (node == nullptr)
 		{
 			cout << "matchHelper() was passed a nullptr." << endl;
 			return;
+		}
+
+		stack<TrieNode*> matchStack;
+
+		for (auto child : node->getChildren())
+		{
+			matchStack.push(child);
 		}
 
 		if (node->isSentinel())

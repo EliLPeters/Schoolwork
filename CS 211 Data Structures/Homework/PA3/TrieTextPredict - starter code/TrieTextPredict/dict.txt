@@ -1,0 +1,10 @@
+ant
+antelope
+anteater
+chicken
+deer
+duck
+goat
+goldfish
+goose
+horse
