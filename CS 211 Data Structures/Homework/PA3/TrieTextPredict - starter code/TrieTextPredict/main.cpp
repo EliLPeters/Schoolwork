@@ -86,8 +86,9 @@ int main(void)
 
     //Then, prompt the user for a list of partial words to look up.  Display all matches on the screen.
 	string sub = "";
-	cout << "Enter the substring you wish to look up, or leave blank to exit: " << endl;
+	cout << "Enter the substring you wish to look up:" << endl;
 	cin >> sub;
+
 	if (sub != "")
 	{
 		vector<string> matches = dictionary.search(sub);
@@ -97,9 +98,11 @@ int main(void)
 			cout << "No matches found" << endl;
 		}
 
+		int count = 0;
 		for (auto match : matches)
 		{
-			cout << match << " ";
+			count++;
+			cout << count << ": " << match << endl;
 		}
 	}
 

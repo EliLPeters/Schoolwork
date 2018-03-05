@@ -37,7 +37,7 @@ private:
 		}
 	}
 
-	TrieNode* searchHelper(string word, TrieNode* parent)
+	TrieNode* searchHelper(string word, TrieNode* parent, string& thingy)
 	{
 		if (parent == nullptr)
 		{
@@ -45,9 +45,14 @@ private:
 		}
 		else
 		{
+			if (parent != _root)
+			{
+				thingy += parent->getValue();
+			}
+			
 			if (word.length() > 1)
 			{
-				return searchHelper(word.substr(1), parent->getChild(word.at(0)));
+				return searchHelper(word.substr(1), parent->getChild(word.at(0)), thingy);
 			}
 			else
 			{
@@ -78,6 +83,24 @@ private:
 		else
 		{
 			match += node->getValue();
+			while (!matchStack.empty())
+			{
+				matchHelper(matches, match, matchStack.top());
+				matchStack.pop();
+			}
+		}
+	}
+
+	void destructorHelper(stack<TrieNode*>& doomStack, TrieNode* node)
+	{
+		if (node != nullptr)
+		{
+			doomStack.push(node);
+
+			for (auto child : node->getChildren())
+			{
+				destructorHelper(doomStack, child);
+			}
 		}
 	}
 
@@ -92,21 +115,21 @@ public:
     virtual ~Trie()
     {
         //TODO: clean up memory
-		
+		stack<TrieNode*> doomStack;
+
+		destructorHelper(doomStack, _root);
+
+		while (!doomStack.empty())
+		{
+			delete doomStack.top();
+			doomStack.pop();
+		}
     }
 
 	//TODO: implement
     void addWord(const string &word)
     {
-		// if _root doesn't have the first letter as a child create it
-		if (_root->getChild(word[0]) == nullptr)
-		{
-			_root->setChild(word[0], new TrieNode{ word[0] });
-		}
-		
-		// then run the helper function on that child
-		addWordHelper(_root->getChild(word[0]), word.substr(1));
-		
+		addWordHelper(_root, word);
     }
 
 	//TODO: implement
@@ -114,20 +137,20 @@ public:
     {
         vector<string> matches;
 
-		string thingy = word;
+		string thingy = "";
 
-		TrieNode* start = searchHelper(word, _root);
+		TrieNode* start = searchHelper(word, _root, thingy);
 		// Navigate through the tree until we hit the final letter, then run the matchHelper function starting there.
 		if (start != nullptr)
 		{
-			cout << "NOT NULL! :D" << endl;
-			cout << start->getValue() << endl;
-			//matchHelper(matches, thingy, start);
+			//cout << "NOT NULL! :D" << endl;
+			//cout << start->getValue() << endl;
+			matchHelper(matches, thingy, start);
 		}
-		else
-		{
-			cout << "null" << endl;
-		}
+		//else
+		//{
+			//cout << "null" << endl;
+		//}
 
         return matches;
     }

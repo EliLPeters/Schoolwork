@@ -149,6 +149,7 @@
     <ClInclude Include="TrieNode.h" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="complex.txt" />
     <Text Include="dict.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
