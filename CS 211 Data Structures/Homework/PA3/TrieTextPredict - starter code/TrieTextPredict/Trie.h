@@ -140,17 +140,11 @@ public:
 		string thingy = "";
 
 		TrieNode* start = searchHelper(word, _root, thingy);
-		// Navigate through the tree until we hit the final letter, then run the matchHelper function starting there.
+
 		if (start != nullptr)
 		{
-			//cout << "NOT NULL! :D" << endl;
-			//cout << start->getValue() << endl;
 			matchHelper(matches, thingy, start);
 		}
-		//else
-		//{
-			//cout << "null" << endl;
-		//}
 
         return matches;
     }

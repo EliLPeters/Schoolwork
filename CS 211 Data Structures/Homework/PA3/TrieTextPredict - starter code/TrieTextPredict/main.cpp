@@ -4,9 +4,9 @@
 
 #include "Trie.h"
 
-
 using namespace std;
 
+/*
 //PA #3 Checkin TODO: Implement!
 void search(TrieNode *node, vector<string> &words, string current_word, string prefix)
 {
@@ -23,7 +23,6 @@ void search(TrieNode *node, vector<string> &words, string current_word, string p
 		words.push_back(current_word);
 	}
 }
-
 //NOTE: You do not have to modify this function.  Its purpose is to call your checkin code
 void pa3CheckinDriver()
 {
@@ -59,6 +58,7 @@ void pa3CheckinDriver()
         cout << word << endl;
     }
 }
+*/
 
 int main(void)
 {
@@ -85,13 +85,34 @@ int main(void)
 	recieving.close();
 
     //Then, prompt the user for a list of partial words to look up.  Display all matches on the screen.
+	
 	string sub = "";
-	cout << "Enter the substring you wish to look up:" << endl;
+
+	cout << "Enter a substring you wish to look up:" << endl;
 	cin >> sub;
 
-	if (sub != "")
+	vector<string> searches;
+	if (sub != ".")
 	{
-		vector<string> matches = dictionary.search(sub);
+		searches.push_back(sub);
+	}
+	
+	while (sub != ".")
+	{
+		cout << "Enter another substring you wish to look up, or \".\" to terminate:" << endl;
+		cin >> sub;
+		if (sub != ".")
+		{
+			searches.push_back(sub);
+		}
+	}
+	
+
+	for(auto search : searches)
+	{
+		vector<string> matches = dictionary.search(search);
+
+		cout << "Matches for " << search << ":" << endl;
 
 		if (matches.size() == 0)
 		{
