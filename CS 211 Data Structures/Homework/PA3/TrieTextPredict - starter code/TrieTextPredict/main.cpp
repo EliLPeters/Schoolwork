@@ -92,16 +92,16 @@ int main(void)
 	cin >> sub;
 
 	vector<string> searches;
-	if (sub != ".")
+	if (sub != "$")
 	{
 		searches.push_back(sub);
 	}
 	
-	while (sub != ".")
+	while (sub != "$")
 	{
-		cout << "Enter another substring you wish to look up, or \".\" to terminate:" << endl;
+		cout << "Enter another substring you wish to look up, or \"$\" to terminate:" << endl;
 		cin >> sub;
-		if (sub != ".")
+		if (sub != "$")
 		{
 			searches.push_back(sub);
 		}
