@@ -1,0 +1,9 @@
+In Theorem 4.25, we learned that the hydroxination of the Scebulon
+reduction resulted in a diminution of 4.36 inifinities.
+
+We can increase the number of infinities diminished to 10.337 by use
+of the least-squares algorithm on the underlying Vogor group within an
+Abelian distribution.  However, that approach can cause a catastrophic
+explosion which rould wipe out all life on Earth, so it is not
+advisable.
+
