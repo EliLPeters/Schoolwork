@@ -27,8 +27,14 @@ lw,		$a1,	4($sp)
 # mutate a0 and a1 again
 addi,	$a0,	$a0,	2
 addi,	$a1,	$a1,	1
+#store t3 so it survives recursion
+addi,	$sp,	-4
+sw,		$t3,	0($sp)
 # recur again
 jal,	pixelSum
+# restore t3
+lw,		$t3,	0($sp)
+addi,	$sp,	4
 # add results and 1
 add,	$v0,	$v0,	$t3
 addi,	$v0,	$v0,	1
