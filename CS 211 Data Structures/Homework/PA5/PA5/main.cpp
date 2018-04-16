@@ -79,5 +79,22 @@ int main(void)
 		}
 	}
 
+	graph_file.close();
+
+	string actor_ID = "";
+	cout << "Enter Actor ID: ";
+	cin >> actor_ID;
+	cout << "Actor Name: " << all_actors[actor_ID]->getName() << endl;
+	cout << "Movie IDs: ";
+
+	vector<Movie*> actors_movies = all_actors[actor_ID]->getMovies();
+
+	for (auto item : actors_movies)
+	{
+		cout << item->getId();
+	}
+
+	cout << endl;
+
 	return 0;
 }
