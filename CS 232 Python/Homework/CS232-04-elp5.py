@@ -121,8 +121,12 @@ for i in range(0, NUM_DICE):
 # tests the resulted in a Yahtzee.  Print the number of tests,
 # the number of Yahtzees, and the percentage of success
 # to the screen in an easy to read and understand manner
+num_yahtzees = 0
+for i in range(0,NUM_TESTS):
+    if play_yahtzee(the_dice):
+        num_yahtzees +=1
 
-
-    
+print(num_yahtzees, "yahtzees out of", NUM_TESTS)
+print("{:.0%} percent success rate!".format(num_yahtzees / NUM_TESTS))
 
 # *** End of "main" code ***
